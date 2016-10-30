@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+chicago_file = File.read("chicagozip.geojson")
+
+chicago_hash = JSON.parse(chicago_file)
+
+chicago_hash["features"].each do |feature|
+  neighborhood = Neighborhood.new
+  neighborhood.name = feature["properties"]["name"]
+  r_neighborhood = RGeo::GeoJSON.decode(feature)
+
+  neighborhood.border = r_neighborhood.geometry.as_text
+  neighborhood.save
+end

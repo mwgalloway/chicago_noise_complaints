@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'rgeo'
 gem 'activerecord-postgis-adapter'
 gem 'rgeo-geojson'
+gem 'pry'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
