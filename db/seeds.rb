@@ -34,8 +34,8 @@ complaints_hash["data"].each do |row|
   longitude = row[10][2]
   complaint.latlon = "POINT(#{longitude} #{lattitude})"
 
-
-
-
+  Neighborhood.all.each do |neighborhood|
+    complaint.neighborhood = neighborhood if neighborhood.border.contains?(complaint.latlon)
+  end
   complaint.save
 end
