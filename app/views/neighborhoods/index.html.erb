@@ -1,0 +1,38 @@
+Map
+<div id="map"></div>
+
+<script>
+
+    var map = L.map('map', {scrollWheelZoom:false}).setView([41.87810, -87.62980], 11.5);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+
+    function getColor(zip) {
+      if (["60622"].includes(zip)) {
+        return '#800026';
+      } else {
+        return '#FFEDA0';
+      }
+    }
+
+    function style(feature) {
+        return {
+            fillColor: getColor(feature.properties.zip),
+            weight: 2,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.7
+        };
+    }
+
+
+    var geo = L.geoJson(chicagoData, {style: style}).addTo(map);
+
+    // L.geoJson(chicago_neighborhoods, {style: style}).addTo(map);
+
+
+</script>
