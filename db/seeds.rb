@@ -19,3 +19,23 @@ chicago_hash["features"].each do |feature|
   neighborhood.border = r_neighborhood.geometry.as_text
   neighborhood.save
 end
+
+complaints_file = File.read("air_pollution.json")
+
+complaints_hash = JSON.parse(complaints_file)
+
+complaints_hash["data"].each do |row|
+  complaint = Complaint.new
+  # complaint.complaint_type = row[9]
+  # complaint.api_id = row[8]
+  # complaint.date_filed = row[17]
+  next if row[10][1].nil?
+  lattitude = row[10][1]
+  longitude = row[10][2]
+  complaint.latlon = "POINT(#{longitude} #{lattitude})"
+
+  Neighborhood.all.each do |neighborhood|
+    complaint.neighborhood = neighborhood if neighborhood.border.contains?(complaint.latlon)
+  end
+  complaint.save
+end
