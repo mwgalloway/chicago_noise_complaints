@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20161031000710) do
 
   create_table "complaints", force: :cascade do |t|
     t.geography "latlon",          limit: {:srid=>4326, :type=>"point", :geographic=>true}
-    t.integer   "api_id"
     t.integer   "neighborhood_id"
     t.datetime  "created_at",                                                               null: false
     t.datetime  "updated_at",                                                               null: false
