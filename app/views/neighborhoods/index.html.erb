@@ -3,15 +3,15 @@ Map
 
 <script>
 
-    var map = L.map('map', {scrollWheelZoom:false}).setView([41.87810, -87.62980], 11.5);
+    var map = L.map('map', {scrollWheelZoom:false}).setView([41.85810, -87.62980], 11);
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    var high = <%= complaints_greater_than(15).to_json.html_safe  %>
+    var high = <%= complaints_greater_than(20).to_json.html_safe  %>
     var med = <%= complaints_greater_than(10).to_json.html_safe %>
-    var low = <%= complaints_greater_than(5).to_json.html_safe %>
+    var low = <%= complaints_greater_than(1).to_json.html_safe %>
 
 
     function getColor(shape_area) {
