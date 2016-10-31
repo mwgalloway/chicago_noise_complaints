@@ -13,7 +13,7 @@ chicago_hash = JSON.parse(chicago_file)
 
 chicago_hash["features"].each do |feature|
   neighborhood = Neighborhood.new
-  neighborhood.name = feature["properties"]["name"]
+  neighborhood.zip = feature["properties"]["zip"]
   r_neighborhood = RGeo::GeoJSON.decode(feature)
 
   neighborhood.border = r_neighborhood.geometry.as_text

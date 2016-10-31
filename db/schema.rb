@@ -10,21 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161030223302) do
+ActiveRecord::Schema.define(version: 20161031000710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
 
-  create_table "locations", force: :cascade do |t|
-    t.string    "name"
-    t.geography "latlon",     limit: {:srid=>4326, :type=>"point", :geographic=>true}
-    t.datetime  "created_at",                                                          null: false
-    t.datetime  "updated_at",                                                          null: false
+  create_table "complaints", force: :cascade do |t|
+    t.geography "latlon",          limit: {:srid=>4326, :type=>"point", :geographic=>true}
+    t.integer   "api_id"
+    t.integer   "neighborhood_id"
+    t.datetime  "created_at",                                                               null: false
+    t.datetime  "updated_at",                                                               null: false
   end
 
   create_table "neighborhoods", force: :cascade do |t|
-    t.string    "name"
+    t.string    "zip"
     t.geography "border",     limit: {:srid=>4326, :type=>"geometry", :geographic=>true}
     t.datetime  "created_at",                                                             null: false
     t.datetime  "updated_at",                                                             null: false
