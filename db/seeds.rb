@@ -20,7 +20,7 @@ chicago_hash["features"].each do |feature|
   neighborhood.save
 end
 
-complaints_file = File.read("air_pollution.json")
+complaints_file = File.read("noise_complaints.json")
 
 complaints_hash = JSON.parse(complaints_file)
 

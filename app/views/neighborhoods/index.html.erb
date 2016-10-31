@@ -9,6 +9,10 @@ Map
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
+    var high = <%  %>
+
+    var low <% @neighborhood.all.find_all { |neighborhood| neighborhood.complaints.count > 0 }.map{ |neighborhood| neighborhood.zip } %>
+
 
     function getColor(zip) {
       if (["60622"].includes(zip)) {
