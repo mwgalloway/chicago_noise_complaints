@@ -9,14 +9,18 @@ Map
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    var high = <%  %>
+    var high = <%= complaints_greater_than(15).to_json.html_safe  %>
+    var med = <%= complaints_greater_than(10).to_json.html_safe %>
+    var low = <%= complaints_greater_than(5).to_json.html_safe %>
 
-    var low <% @neighborhood.all.find_all { |neighborhood| neighborhood.complaints.count > 0 }.map{ |neighborhood| neighborhood.zip } %>
 
-
-    function getColor(zip) {
-      if (["60622"].includes(zip)) {
+    function getColor(shape_area) {
+      if (high.includes(shape_area)) {
         return '#800026';
+      } else if (med.includes(shape_area)){
+        return '#FC4E2A';
+      } else if (low.includes(shape_area)){
+        return '#FEB24C';
       } else {
         return '#FFEDA0';
       }
@@ -24,7 +28,7 @@ Map
 
     function style(feature) {
         return {
-            fillColor: getColor(feature.properties.zip),
+            fillColor: getColor(feature.properties.shape_area),
             weight: 2,
             opacity: 1,
             color: 'white',

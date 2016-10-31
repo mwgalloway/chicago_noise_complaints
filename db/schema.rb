@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20161031000710) do
   create_table "neighborhoods", force: :cascade do |t|
     t.string   "zip"
     t.geometry "border",     limit: {:srid=>0, :type=>"geometry"}
+    t.string   "shape_area"
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
   end
