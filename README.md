@@ -1,6 +1,7 @@
-# InfoSearch
+# Chicago Noise Map
 [View it live](http://immense-depths-80890.herokuapp.com/)
-## Chicago Noise Complaints
+
+## Summary
 
 This is a choropleth map of the City of Chicago highlighting the
 concentration of noise complaints in each of Chicago's neighborhoods
